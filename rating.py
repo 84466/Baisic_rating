@@ -22,7 +22,7 @@ def read_csv(path: str)-> DataFrame:
 
 
 def joins(basic:DataFrame,rating:DataFrame)-> DataFrame:
-        return basic.join(rating,basic.tconst ==  rating.tconst,"inner")
+    return basic.join(rating,basic.tconst ==  rating.tconst,"inner")
 
 
 
