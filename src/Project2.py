@@ -50,7 +50,7 @@ def main():
     )
     flights = "flights.csv"
     planes = "planes.csv"
-    airport = "airports.csv"
+    airport = "airport.csv"
 
 
     # From here csv we read csv
