@@ -2,7 +2,6 @@ import os
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import *
 
-
 # This is spark session
 spark = SparkSession.builder.appName("app_name").getOrCreate()
 
@@ -40,9 +39,9 @@ def main():
         os.path.abspath(os.path.dirname(__file__)),
         current_path,
     )
-    flights = "flight.csv"
+    flights = "flights.csv"
     planes = "planes.csv"
-    airport = "airport.csv"
+    airport = "airports.csv"
 
     flights = read_csv(f"{paths}{flights}")
     planes = read_csv(f"{paths}{planes}")
@@ -53,11 +52,11 @@ def main():
     days.show()
 
     # the relationship between flights and planes tables is tailnum
-    # the most delays airplane manufacturer in the analysis period is EMBRAER
-
     df_merge = joints_flights_planes(flights, planes)
     df_merge.show(1)
-
+    #the most delays airplane manufacturer in the analysis period is EMBRAER
+    # analysis_period = delay_agg(df_merge)
+    # analysis_period.show(1)
     # Newark and New York are the cities
     df_join = joints_flights_airports(flights, airport)
     df_join.show()
