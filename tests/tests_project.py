@@ -1,11 +1,10 @@
 import pytest
 
-from src.Project2 import (
+from src.Project import (
     read_csv,
     days_of_flights,
     joints_flights_planes,
     joints_flights_airports,
-    delay_agg,
     spark,
 )
 
@@ -46,31 +45,20 @@ def test_days_of_flights(flight):
 
 def test_joints_flights_planes(flight, path):
     # Arrange
-    expected = 72.0
+    expected = 'BOEING'
     # Act
     path1 = f"{path}planes.csv"
     planes = spark.read.csv(path1, header=True, sep="\t")
-    joins = joints_flights_planes(flight, planes)
-    result = joins.agg({"day": "sum"})
+    result= joints_flights_planes(flight, planes)
+
     # Assert
     assert result.collect()[0][0] == expected
 
 
-def test_delay_agg(flight, path):
-    # Arrange
-    expected = 1
-    # Act
-    path1 = f"{path}planes.csv"
-    planes = spark.read.csv(path1, header=True, sep="\t")
-    joining = joints_flights_planes(flight, planes)
-    result = delay_agg(joining)
-    # Assert
-    assert result.count() == expected
-
 
 def test_joints_flights_airports(flight, path):
     # Arrange
-    expected = "Aberdeen"
+    expected = 3
     # Act
     path1 = f"{path}airport.csv"
     airports = spark.read.csv(path1, header=True, sep="\t")
