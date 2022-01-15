@@ -2,6 +2,13 @@ import os
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import *
 
+#Comments-
+#1-Add more tests if possible
+#2-Rename the Makefile (filename)
+#3-write command of black and flake8 in Makefile
+#4-Add all answers in the comments
+#5-Use logger if possible
+#6-Create new branch for diffrent changes
 # This is spark session
 spark = SparkSession.builder.appName("app_name").getOrCreate()
 
