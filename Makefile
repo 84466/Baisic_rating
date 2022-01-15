@@ -9,7 +9,6 @@ black: ## run formatter with black
 
 lint: ## check style with flake8
 	black --line-length 100 --skip-string-normalization --check src test
-    flake8 src test
 
 
 install: clean ## install the package to the active Python's site-packages
